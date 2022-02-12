@@ -1,0 +1,30 @@
+apiVersion: v1
+data:
+  AGENT_API_URL: '""'
+  AWS_ACCESS_KEY: '""'
+  AWS_SECRET_KEY: '""'
+  LEX_BOT_ALIAS_ID: '"bbb"'
+  LEX_BOT_ID: '"aaa"'
+  SESSION_DB: ''
+  SESSION_DB_COLLECTION: ''
+  SESSION_DB_NAME: ''
+kind: ConfigMap
+metadata:
+  name: callbackapienv
+
+---
+
+apiVersion: v1
+data:
+  AWS_ACCESS_KEY_ID: aa
+  AWS_SECRET_ACCESS_KEY: aa
+  AWS_REGION: aa
+  CONTACT_FLOW: aa
+  CONNECT_INSTANCE_ID: aa
+  SESSION_DB: ''
+  SNS_ENDPOINT: ''
+  TWILIO_ACCOUNT_SID: ''
+  TWILIO_AUTH_TOKEN: ''
+kind: ConfigMap
+metadata:
+  name: agentapienv

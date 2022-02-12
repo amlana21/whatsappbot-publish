@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: watsappagentapi
+spec:
+  selector:
+    app: watsappagentapi
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wsapp-agent-api
+  labels:
+    app: watsappagentapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: watsappagentapi
+  template:
+    metadata:
+      labels:
+        app: watsappagentapi
+    spec:
+      imagePullSecrets:
+      - name: appregistrykey
+      containers:
+      - name: apiapp
+        image: <image_name>
+        imagePullPolicy: Always 
+        envFrom:
+        - configMapRef:
+            name: agentapienv
+        ports:
+        - containerPort: 3000

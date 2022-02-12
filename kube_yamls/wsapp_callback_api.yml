@@ -1,0 +1,45 @@
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: watsappcallbackapi
+spec:
+  selector:
+    app: watsappcallbackapi
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: callback-api
+  labels:
+    app: watsappcallbackapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: watsappcallbackapi
+  template:
+    metadata:
+      labels:
+        app: watsappcallbackapi
+    spec:
+      imagePullSecrets:
+      - name: appregistrykey
+      containers:
+      - name: apiapp
+        image: <image_name>
+        imagePullPolicy: Always 
+        envFrom:
+        - configMapRef:
+            name: callbackapienv
+        ports:
+        - containerPort: 5000
