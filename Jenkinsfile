@@ -8,7 +8,7 @@ pipeline{
         SKIP="N"
         TERRADESTROY="Y"
         FIRST_DEPLOY="Y"
-        STATE_BUCKET="whatsappbotstateac"
+        STATE_BUCKET="<bucket_name>"
         REGISTRY_URL="<registry_url>"
     }
 
